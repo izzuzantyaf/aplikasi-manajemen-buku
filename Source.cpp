@@ -6,7 +6,7 @@
 
 #include "Admin.h"
 #include "Buku.h"
-#include "Utility.h" 
+#include "Utility.h"
 
 using namespace std;
 
@@ -32,6 +32,7 @@ int main() {
 
 		admin_login_page:
 		system("cls");
+
 		cout << "ADMIN LOGIN PAGE\n\n";
 		cout << "Username : ";
 		cin >> username;
@@ -54,6 +55,7 @@ int main() {
 			case 1:
 				system("cls");
 				cout << "TAMBAH BUKU BARU\n\n";
+
 				// fungsi tambah
 				if (admin.tambah_buku(utility.input_data_buku(), "buku.txt"))
 				{
@@ -63,8 +65,10 @@ int main() {
 					cout << "\nBuku gagal ditambahkan\n";
 				}
 				cout << "\n";
+
 				system("pause");
 				goto main_page;
+
 				break;
 			case 2:
 				system("cls");
@@ -75,11 +79,14 @@ int main() {
 			case 3:
 				system("cls");
 				int id_hapus;
+
 				cout << "DAFTAR BUKU\n\n";
 				utility.tampil(utility.ambil("buku.txt"));
+
 				cout << "\nHAPUS BUKU\n\n";
 				cout << "Masukkan ID buku yang ingin dihapus : ";
 				cin >> id_hapus;
+
 				//fungsi hapus
 				if (admin.hapus_buku(id_hapus))
 				{
@@ -91,6 +98,7 @@ int main() {
 				cout << "\n";
 				system("pause");
 				goto main_page;
+
 				break;
 			case 4:
 				system("cls");
@@ -116,28 +124,34 @@ int main() {
 					system("cls");
 					utility.tampil(utility.sort(utility.ambil("buku.txt"), "ID"));
 					goto menu_sorting;
+
 					break;
 				case 2:
 					system("cls");
 					utility.tampil(utility.sort(utility.ambil("buku.txt"), "judul"));
 					goto menu_sorting;
+
 					break;
 				case 3:
 					system("cls");
 					utility.tampil(utility.sort(utility.ambil("buku.txt"), "kategori"));
 					goto menu_sorting;
+
 					break;
 				case 4:
 					system("cls");
 					utility.tampil(utility.sort(utility.ambil("buku.txt"), "tahun"));
 					goto menu_sorting;
+
 					break;
 				case 5:
 					system("cls");
 					goto main_page;
+
 					break;
 				default:
 					goto sorting_buku;
+
 					break;
 				}
 

@@ -13,10 +13,6 @@ class Utility
 {
 public:
 
-	vector<Buku> array_buku;
-	vector<string> array_string;
-	fstream file;
-
 	void
 		tampil(vector<Buku> buku);
 

@@ -11,7 +11,7 @@ class Admin:public Utility
 {
 public:
 	void
-		edit_buku();
+		edit_buku(int id_edit);
 	bool
 		hapus_buku(int id_hapus),
 		tambah_buku(Buku buku, string nama_file),

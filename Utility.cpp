@@ -7,7 +7,7 @@ void Utility::tampil(vector<Buku> array_buku) {
 	cout << setw(35);
 	cout << left << "Judul";
 	cout << setw(20);
-	cout << left << "Penulis";
+	cout << left << "Kategori";
 	cout << setw(4);
 	cout << left << "Tahun";
 	cout << endl << endl;
@@ -28,7 +28,7 @@ void Utility::tampil(vector<Buku> array_buku) {
 
 vector<string> Utility::pecah(char delimiter, string buffer) {
 
-	array_string = {};
+	vector<string> array_string = {};
 	int delimiter_index;
 
 	for (int i = 0; i < buffer.length(); i++)
@@ -53,21 +53,24 @@ vector<string> Utility::pecah(char delimiter, string buffer) {
 
 vector<Buku> Utility::ambil(string nama_file) {
 
-	array_buku = {};
-	array_string = {};
+	fstream file;
+	vector<Buku> array_buku = {};
+	vector<string> array_string = {};
 	string buffer;
 	Buku buku;
 
-	file.open(nama_file,ios::in);
+	file.open(nama_file);
 
 	while (!file.eof())
 	{
 		getline(file, buffer);
 		array_string = pecah('/', buffer);
+
 		buku.id = stoi(array_string[0]);
 		buku.judul = array_string[1];
 		buku.kategori = array_string[2];
 		buku.tahun = stoi(array_string[3]);
+
 		array_buku.push_back(buku);
 	}
 
@@ -127,8 +130,8 @@ vector<Buku> Utility::sort(vector<Buku> array_buku, string sort_param) {
 
 Buku Utility::input_data_buku() {
 
+	vector<Buku> array_buku = {};
 	Buku buku_baru;
-	array_buku = {};
 
 	array_buku = ambil("buku.txt");
 
