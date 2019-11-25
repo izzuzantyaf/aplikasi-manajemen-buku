@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 #include <iomanip>
-#include <ctime>
 
 #include "Buku.h"
 
