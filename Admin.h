@@ -1,9 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <vector>
-
 #include "Buku.h"
 #include "Utility.h"
 
@@ -11,10 +8,14 @@ class Admin:public Utility
 {
 public:
 	void
-		edit_buku(int id_edit);
+		hapus_buku(string id_hapus),
+		edit_buku(string id_edit),
+		tambah_buku(Buku buku, string nama_file);
+
+	vector<Buku>
+		filter(vector<Buku> array_buku, string filter_param);
+
 	bool
-		hapus_buku(int id_hapus),
-		tambah_buku(Buku buku, string nama_file),
 		login(string username, string password, string nama_file);
 };
 

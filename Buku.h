@@ -8,9 +8,9 @@ using namespace std;
 class Buku {
 public:
 	int
-		id,
 		tahun;
 	string
+		id,
 		judul,
 		kategori;
 };

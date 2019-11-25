@@ -1,8 +1,18 @@
 #include "Utility.h"
 
+bool Utility::validasi(char validation_param)
+{
+	if (validation_param == 'Y' || validation_param == 'y')
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void Utility::tampil(vector<Buku> array_buku) {
 
-	cout << setw(6);
+	cout << setw(12);
 	cout << left << "ID";
 	cout << setw(35);
 	cout << left << "Judul";
@@ -13,7 +23,7 @@ void Utility::tampil(vector<Buku> array_buku) {
 	cout << endl << endl;
 
 	for (Buku buku : array_buku) {
-		cout << setw(6);
+		cout << setw(12);
 		cout << left << buku.id;
 		cout << setw(35);
 		cout << left << buku.judul;
@@ -24,6 +34,22 @@ void Utility::tampil(vector<Buku> array_buku) {
 		cout << endl;
 	}
 	
+}
+
+string Utility::generate_id()
+{
+	string
+		pool = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+		id;
+
+	srand(time(0));
+
+	for (int i = 0; i < 6; i++)
+	{
+		id += pool[ 0 + rand() % pool.length()];
+	}
+
+	return id;
 }
 
 vector<string> Utility::pecah(char delimiter, string buffer) {
@@ -53,7 +79,7 @@ vector<string> Utility::pecah(char delimiter, string buffer) {
 
 vector<Buku> Utility::ambil(string nama_file) {
 
-	fstream file;
+	ifstream file;
 	vector<Buku> array_buku = {};
 	vector<string> array_string = {};
 	string buffer;
@@ -64,14 +90,20 @@ vector<Buku> Utility::ambil(string nama_file) {
 	while (!file.eof())
 	{
 		getline(file, buffer);
-		array_string = pecah('/', buffer);
+		if (buffer != "")
+		{
+			array_string = pecah('/', buffer);
 
-		buku.id = stoi(array_string[0]);
-		buku.judul = array_string[1];
-		buku.kategori = array_string[2];
-		buku.tahun = stoi(array_string[3]);
+			buku.id = array_string[0];
+			buku.judul = array_string[1];
+			buku.kategori = array_string[2];
+			buku.tahun = stoi(array_string[3]);
 
-		array_buku.push_back(buku);
+			array_buku.push_back(buku);
+		}
+		else {
+			continue;
+		}
 	}
 
 	file.close();
@@ -128,21 +160,42 @@ vector<Buku> Utility::sort(vector<Buku> array_buku, string sort_param) {
 	return array_buku;
 }
 
-Buku Utility::input_data_buku() {
+Buku Utility::buat_buku() {
 
-	vector<Buku> array_buku = {};
 	Buku buku_baru;
+	int pilihan;
 
-	array_buku = ambil("buku.txt");
-
-	buku_baru.id = array_buku[array_buku.size()-1].id + 1;
+	buku_baru.id = generate_id();
 
 	cout << "\nJudul		: ";
 	cin.ignore();
 	getline(cin, buku_baru.judul);
-	cout << "Kategori	: ";
-	getline(cin, buku_baru.kategori);
-	cout << "Tahun		: ";
+	cout << "\nKategori\n";
+	cout << "1. Kuliah\n2. Novel\n3. Kesehatan\n4. Sejarah\n5. Lainnya";
+	cout << "\n\nPilihan kategori : ";
+	cin >> pilihan;
+	switch (pilihan)
+	{
+	case 1:
+		buku_baru.kategori = "Kuliah";
+		break;
+	case 2:
+		buku_baru.kategori = "Novel";
+		break;
+	case 3:
+		buku_baru.kategori = "Kesehatan";
+		break;
+	case 4:
+		buku_baru.kategori = "Sejarah";
+		break;
+	case 5:
+		buku_baru.kategori = "Lainnya";
+		break;
+	default:
+		buku_baru.kategori = "Lainnya";
+		break;
+	}
+	cout << "\nTahun		: ";
 	cin >> buku_baru.tahun;
 
 	return buku_baru;
