@@ -1,9 +1,9 @@
 VEDWXL/11 Cara Jaga Kesehatan/Kesehatan/2004
-VCBVFZ/Kalkulus 1A/Kuliah/2013
+VCBVFZ/Kalkulus 2A/Kuliah/2018
 AZILKX/Sejarah Kerajaan Majapahit/Sejarah/2010
 OOQQFC/Kerajaan Kutai/Sejarah/2007
 CDSPVH/Laskar Pelangi/Novel/2013
 AFFSRX/Sepatu Dahlan/Novel/2015
 KOEFWF/Perawatan Mobil/Lainnya/2004
-XEBGWA/Probabilitas dan Statistika/Kuliah/2005
 BPHVGC/Pemrograman C#/Kuliah/2015
+XDSYNJ/Pemrograman Java/Kuliah/2000

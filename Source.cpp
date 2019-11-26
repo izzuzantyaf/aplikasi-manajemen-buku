@@ -37,10 +37,10 @@ int main() {
 
 	switch (pilihan)
 	{
-	// jika pilihan user adalah 1
+		// jika pilihan user adalah 1
 	case 1:
 
-		admin_login_page:
+	admin_login_page:
 		system("cls");
 
 		cout << "ADMIN LOGIN PAGE\n\n";
@@ -52,7 +52,7 @@ int main() {
 		// jika login berhasil
 		if (admin.login(username, password, "admin.txt"))
 		{
-			main_page:
+		main_page:
 			system("cls");
 			cout << "DAFTAR BUKU\n\n";
 
@@ -65,21 +65,21 @@ int main() {
 			cin >> pilihan; // input pilihan kelola buku
 
 			switch (pilihan) {
-			// jika pilihan user adalah tambah buku
+				// jika pilihan user adalah tambah buku
 			case 1:
 				system("cls");
 				cout << "TAMBAH BUKU BARU\n";
 
 				// fungsi untuk menambahkan buku
 				admin.tambah_buku(utility.buat_buku(), "buku.txt");
-				
+
 				cout << "\n";
 				system("pause");
 				goto main_page; // kembali ke halaman setelah login
 
 				break;
 
-			// jika pilihan user adalah hapus buku
+				// jika pilihan user adalah hapus buku
 			case 2:
 				system("cls");
 
@@ -93,16 +93,17 @@ int main() {
 
 				system("cls");
 
+				cout << "EDIT BUKU\n";
 				// fungsi untuk mengedit buku
 				admin.edit_buku(id_edit);
-				
+
 				cout << "\n";
 				system("pause");
 				goto main_page; // kembali ke halaman setelah login
 
 				break;
 
-			// jika pilihan user adalah hapus buku
+				// jika pilihan user adalah hapus buku
 			case 3:
 				system("cls");
 
@@ -123,9 +124,9 @@ int main() {
 
 				break;
 
-			// jika pilihan user adalah filter buku
+				// jika pilihan user adalah filter buku
 			case 4:
-				filter_buku:
+			filter_buku:
 				system("cls");
 
 				cout << "DAFTAR BUKU\n\n";
@@ -133,7 +134,7 @@ int main() {
 				utility.tampil(utility.ambil("buku.txt"));
 
 				// menampilkan menu filter
-				menu_filter:
+			menu_filter:
 				cout << "\nFILTER BUKU\n\n";
 				cout << "Filter berdasarkan kategori\n";
 				cout << "1. Kuliah\n2. Novel\n3. Kesehatan\n4. Sejarah\n5. Lainnya\n6. Kembali\n";
@@ -142,68 +143,73 @@ int main() {
 
 				switch (pilihan)
 				{
-				// jika user memilih kategori kuliah
+					// jika user memilih kategori kuliah
 				case 1:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk menampilkan buku yang berkategori Kuliah
-					admin.tampil(admin.filter(admin.ambil("buku.txt"), "Kuliah"));
+					admin.filter_buku("Kuliah");
+
 					goto menu_filter; // kembali ke halaman menu filter
 
 					break;
 
-				// jika user memilih kategori Novel
+					// jika user memilih kategori Novel
 				case 2:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk menampilkan buku yang berkategori Novel
-					admin.tampil(admin.filter(admin.ambil("buku.txt"), "Novel"));
+					admin.filter_buku("Novel");
+
 					goto menu_filter; // kembali ke halaman menu filter
-					
+
 					break;
 
-				// jika user memilih kategori Novel
+					// jika user memilih kategori Novel
 				case 3:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk menampilkan buku yang berkategori Kesehatan
-					admin.tampil(admin.filter(admin.ambil("buku.txt"), "Kesehatan"));
+					admin.filter_buku("Kesehatan");
+
 					goto menu_filter; // kembali ke halaman menu filter
 
 					break;
 
-				// jika user memilih kategori Sejarah
+					// jika user memilih kategori Sejarah
 				case 4:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
-					
+
 					// fungsi untuk menampilkan buku yang berkategori Sejarah
-					admin.tampil(admin.filter(admin.ambil("buku.txt"), "Sejarah"));
+					admin.filter_buku("Sejarah");
+
 					goto menu_filter; // kembali ke halaman menu filter
 
 					break;
 
-				// jika user memilih kategori Lainnya
+					// jika user memilih kategori Lainnya
 				case 5:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk menampilkan buku yang berkategori Lainnya
-					admin.tampil(admin.filter(admin.ambil("buku.txt"), "Lainnya"));
+					admin.filter_buku("Lainnya");
+
 					goto menu_filter; // kembali ke halaman menu filter
 
 					break;
 
-				// jika user memilih kembali
+					// jika user memilih kembali
 				case 6:
 					goto main_page; // kembali ke halaman setelah login
 
 					break;
 
-				// jika user selain pilihan yang disediakan
+					// jika user selain pilihan yang disediakan
 				default:
 					system("cls");
 					goto filter_buku; // kembali ke halaman menu filter
@@ -212,7 +218,7 @@ int main() {
 				}
 				break;
 
-			// jika user memilih menu Sorting
+				// jika user memilih menu Sorting
 			case 5:
 			sorting_buku:
 				system("cls");
@@ -221,7 +227,7 @@ int main() {
 				// fungsi untuk menampilkan daftar buku
 				utility.tampil(utility.ambil("buku.txt"));
 
-			// menampilkan menu kelola buku
+				// menampilkan menu kelola buku
 			menu_sorting:
 				cout << "\nMENU KELOLA BUKU\n";
 				cout << "\nSorting berdasarkan\n1. ID\n2. Judul\n3. Kategori\n4. Tahun\n5. Kembali";
@@ -230,58 +236,62 @@ int main() {
 
 				switch (pilihan)
 				{
-				// jika user memilih sorting berdasarkan ID
+					// jika user memilih sorting berdasarkan ID
 				case 1:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk mengurutkan dan menampilkan daftar buku berdasarkan ID
-					utility.tampil(utility.sort(utility.ambil("buku.txt"), "id"));
+					admin.sorting_buku("id");
+
 					goto menu_sorting; // menampilkan menu sorting
 
 					break;
 
-				// jika user memilih sorting berdasarkan Judul
+					// jika user memilih sorting berdasarkan Judul
 				case 2:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk mengurutkan dan menampilkan daftar buku berdasarkan Judul
-					utility.tampil(utility.sort(utility.ambil("buku.txt"), "judul"));
+					admin.sorting_buku("judul");
+
 					goto menu_sorting; // menampilkan menu sorting
 
 					break;
 
-				// jika user memilih sorting berdasarkan Kategori
+					// jika user memilih sorting berdasarkan Kategori
 				case 3:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk mengurutkan dan menampilkan daftar buku berdasarkan Kategori
-					utility.tampil(utility.sort(utility.ambil("buku.txt"), "kategori"));
+					admin.sorting_buku("kategori");
+
 					goto menu_sorting; // menampilkan menu sorting
 
 					break;
 
-				// jika user memilih sorting berdasarkan Tahun
+					// jika user memilih sorting berdasarkan Tahun
 				case 4:
 					system("cls");
 					cout << "DAFTAR BUKU\n\n";
 
 					// fungsi untuk mengurutkan dan menampilkan daftar buku berdasarkan Tahun
-					utility.tampil(utility.sort(utility.ambil("buku.txt"), "tahun"));
+					admin.sorting_buku("tahun");
+
 					goto menu_sorting; // menampilkan menu sorting
 
 					break;
 
-				// jika user memilih untuk kembali
+					// jika user memilih untuk kembali
 				case 5:
 					system("cls");
 					goto main_page; // kembali ke halaman setelah login
 
 					break;
 
-				// jika user memilih pilihan yang tidak tersedia
+					// jika user memilih pilihan yang tidak tersedia
 				default:
 					goto sorting_buku; // kembali ke menu sorting
 
@@ -290,14 +300,14 @@ int main() {
 
 				break;
 
-			// jika user memilih Log out
+				// jika user memilih Log out
 			case 6:
 				system("cls");
 				goto start; // kembali ke halaman utama
 
 				break;
 
-			// jika user memilih pilihan yang tidak tersedia
+				// jika user memilih pilihan yang tidak tersedia
 			default:
 				goto main_page; // kembali ke halaman setelah login
 				break;
@@ -311,13 +321,13 @@ int main() {
 
 		break;
 
-	// jika user memilih Exit
+		// jika user memilih Exit
 	case 2:
 		system("cls");
 		cout << "Terima kasih :)";
 		break;
 
-	// jika user memilih diluar pilihan yang tersedia
+		// jika user memilih diluar pilihan yang tersedia
 	default:
 		system("cls");
 		goto start; // kembali ke halaman utama

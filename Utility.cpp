@@ -1,17 +1,26 @@
+// memasukkan class Utility ke file ini
 #include "Utility.h"
 
+// pendefinisian member function dari class Utility yang bernama validasi yang mengembalikan nilai bertipe data boolean dengan parameter validation_param bertipe char
 bool Utility::validasi(char validation_param)
 {
+	// jika validation_param bernilai Y atau y
 	if (validation_param == 'Y' || validation_param == 'y')
 	{
+		// maka akan mengembalikan nilai true
 		return true;
 	}
 
+	// jika tidak maka akan mengembalikan nilai false
 	return false;
 }
 
+
+
+// pendefinisian member function dari class Utility yang bernama tampil yang mengembalikan nilai kosong dengan parameter bernama array_buku bertipe array vector yang elemen2 nya bertipe Buku
 void Utility::tampil(vector<Buku> array_buku) {
 
+	// menampilkan nama kolom
 	cout << setw(12);
 	cout << left << "ID";
 	cout << setw(35);
@@ -22,6 +31,7 @@ void Utility::tampil(vector<Buku> array_buku) {
 	cout << left << "Tahun";
 	cout << endl << endl;
 
+	// menampilkan daftar buku
 	for (Buku buku : array_buku) {
 		cout << setw(12);
 		cout << left << buku.id;
@@ -36,6 +46,9 @@ void Utility::tampil(vector<Buku> array_buku) {
 	
 }
 
+
+
+// pendefinisian member function dari class Utility yang bernama generate_id yang mengembalikan string tanpa parameter
 string Utility::generate_id()
 {
 	string
@@ -52,6 +65,9 @@ string Utility::generate_id()
 	return id;
 }
 
+
+
+// pendefinisian member function dari class Utility yang bernama pecah yang mengembalikan array vector yang elemen2 nya bertipr string dengan parameter delimiter bertipe char dan buffer bertipe string
 vector<string> Utility::pecah(char delimiter, string buffer) {
 
 	vector<string> array_string = {};
@@ -77,6 +93,9 @@ vector<string> Utility::pecah(char delimiter, string buffer) {
 	return array_string;
 }
 
+
+
+// pendefinisian member function dari class Utility yang bernama pecah yang mengembalikan array vector yang elemen2 nya bertipe Buku dengan parameter nama_file bertipe string
 vector<Buku> Utility::ambil(string nama_file) {
 
 	ifstream file;
@@ -111,13 +130,19 @@ vector<Buku> Utility::ambil(string nama_file) {
 	return array_buku;
 }
 
+
+
+// pendefinisian member function dari class Utility yang bernama sort yang mengembalikan array vector yang elemen2 nya bertipe Buku dengan parameter array buku yang akan disorting dan parameter sorting
 vector<Buku> Utility::sort(vector<Buku> array_buku, string sort_param) {
 
+	// objek penampung sementara
 	Buku temp;
 
+	// melakukan proses sorting buku berdasarkan parameter sorting
 	for (int i = 0; i < array_buku.size() - 1; i++)
 	{
-		for (int j = 0; j < (array_buku.size() - i - 1); j++) {
+		for (int j = 0; j < (array_buku.size() - i - 1); j++)
+		{
 			if (sort_param == "id")
 			{
 				if (array_buku[j].id > array_buku[j + 1].id)
@@ -157,9 +182,34 @@ vector<Buku> Utility::sort(vector<Buku> array_buku, string sort_param) {
 		}
 	}
 
+	// mengembalikan daftar buku yang telah terurut
 	return array_buku;
 }
 
+
+
+vector<Buku> Utility::filter(vector<Buku> array_buku, string filter_param) {
+
+	// deklarasi array penampung buku yang sudah difilter
+	vector<Buku> array_buku_terfilter;
+
+	// pengulangan sebanyak jumlah buku
+	for (Buku b : array_buku) {
+		// apabila kategori buku sama dengan parameter filter
+		if (b.kategori == filter_param)
+		{
+			// maka masukkan buku ke array penampung
+			array_buku_terfilter.push_back(b);
+		}
+	}
+
+	// mengembalikan daftar buku yang sudah difilter
+	return array_buku_terfilter;
+}
+
+
+
+// pendefinisian member function dari class Utility yang bernama Buku yang mengembalikan array vector yang elemen2 nya bertipe Buku dengan parameter array buku yang akan disorting dan parameter sorting
 Buku Utility::buat_buku() {
 
 	Buku buku_baru;
