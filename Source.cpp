@@ -1,5 +1,6 @@
 // memasukkan daftar library yang diperlukan
 #include <iostream> // library input dan output
+#include <conio.h>	// library console input output
 #include <string>	// library string
 #include <fstream>	// library file
 #include <vector>	// library vector
@@ -15,12 +16,13 @@ using namespace std;
 int main() {
 
 	// deklarasi variabel
-	int pilihan;
+	int pilihan,i=0;
 	string
 		username,
 		password,
 		id_edit,
 		id_hapus;
+	char temp;
 
 	// instansiasi objek admin dan utility
 	Admin admin;
@@ -47,7 +49,24 @@ int main() {
 		cout << "Username : ";
 		cin >> username; // input username
 		cout << "Password : ";
-		cin >> password; // input password
+		// input password
+		password.clear();
+		while (true) {
+			temp = _getch();
+			if ((temp>='a' && temp<='z') || (temp>='A' && temp<='Z') || (temp>='0' && temp<='9'))
+			{
+				password += temp;
+				cout << "*";
+			}
+			if (temp=='\b')
+			{
+				cout << "\b \b";
+			}
+			if (temp=='\r')
+			{
+				break;
+			}
+		}
 
 		// jika login berhasil
 		if (admin.login(username, password, "admin.txt"))
@@ -57,7 +76,7 @@ int main() {
 			cout << "DAFTAR BUKU\n\n";
 
 			// menampilkan daftar buku
-			utility.tampil(utility.ambil("buku.txt"));
+			admin.tampil_buku("buku.txt");
 
 			// menampilkan menu kelola buku
 			cout << "\nMENU KELOLA BUKU\n";
@@ -71,7 +90,7 @@ int main() {
 				cout << "TAMBAH BUKU BARU\n";
 
 				// fungsi untuk menambahkan buku
-				admin.tambah_buku(utility.buat_buku(), "buku.txt");
+				admin.tambah_buku("buku.txt");
 
 				cout << "\n";
 				system("pause");
@@ -85,7 +104,7 @@ int main() {
 
 				cout << "DAFTAR BUKU\n\n";
 				// fungsi untuk menampilkan daftar buku
-				utility.tampil(utility.ambil("buku.txt"));
+				admin.tampil_buku("buku.txt");
 
 				cout << "\nEDIT BUKU\n\n";
 				cout << "Masukkan ID buku yang ingin diedit : ";
@@ -109,7 +128,7 @@ int main() {
 
 				cout << "DAFTAR BUKU\n\n";
 				// fungsi untuk menampilkan daftar buku
-				utility.tampil(utility.ambil("buku.txt"));
+				admin.tampil_buku("buku.txt");
 
 				cout << "\nHAPUS BUKU\n\n";
 				cout << "Masukkan ID buku yang ingin dihapus : ";
@@ -131,7 +150,7 @@ int main() {
 
 				cout << "DAFTAR BUKU\n\n";
 				// fungsi untuk menampilkan daftar buku
-				utility.tampil(utility.ambil("buku.txt"));
+				admin.tampil_buku("buku.txt");
 
 				// menampilkan menu filter
 			menu_filter:
@@ -225,7 +244,7 @@ int main() {
 				cout << "DAFTAR BUKU\n\n";
 
 				// fungsi untuk menampilkan daftar buku
-				utility.tampil(utility.ambil("buku.txt"));
+				admin.tampil_buku("buku.txt");
 
 				// menampilkan menu kelola buku
 			menu_sorting:

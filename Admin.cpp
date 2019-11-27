@@ -1,5 +1,9 @@
 #include "Admin.h"
 
+void Admin::tampil_buku(string nama_file){
+	tampil(ambil(nama_file));
+}
+
 void Admin::edit_buku(string id_edit)
 {
 	// deklarasi variabel
@@ -172,10 +176,11 @@ void Admin::hapus_buku(string id_hapus)
 	}
 }
 
-void Admin::tambah_buku(Buku buku, string nama_file)
+void Admin::tambah_buku(string nama_file)
 {
 	// deklarasi varaiabel
 	fstream file;
+	Buku buku_baru;
 	char validation_param;
 	vector<Buku> array_buku;
 
@@ -183,11 +188,14 @@ void Admin::tambah_buku(Buku buku, string nama_file)
 	array_buku = ambil("buku.txt");
 	int jumlah_buku_sebelum = array_buku.size();
 
+	// buat buku baru
+	buku_baru = buat_buku();
+
 	// tampilkan pesan untuk meyakinkan user apakah ingin menambahkan buku ?
 	cout << "\nApakah anda yakin akan menambahkan buku\n";
-	cout << "\nJudul    : " << buku.judul;
-	cout << "\nKategori : " << buku.kategori;
-	cout << "\nTahun    : " << buku.tahun;
+	cout << "\nJudul    : " << buku_baru.judul;
+	cout << "\nKategori : " << buku_baru.kategori;
+	cout << "\nTahun    : " << buku_baru.tahun;
 	cout << "\n\n(Y/T) ? : ";
 	cin >> validation_param;
 
@@ -199,11 +207,11 @@ void Admin::tambah_buku(Buku buku, string nama_file)
 
 		if (array_buku.empty())
 		{
-			file << buku.id << "/" << buku.judul << "/" << buku.kategori << "/" << buku.tahun;
+			file << buku_baru.id << "/" << buku_baru.judul << "/" << buku_baru.kategori << "/" << buku_baru.tahun;
 		}
 		else {
 			file << endl;
-			file << buku.id << "/" << buku.judul << "/" << buku.kategori << "/" << buku.tahun;
+			file << buku_baru.id << "/" << buku_baru.judul << "/" << buku_baru.kategori << "/" << buku_baru.tahun;
 		}
 
 		file.close();
